@@ -34,7 +34,7 @@ function App() {
 
     return (
         <div className="App">
-            <div style={{width: "1920px"}}>
+            <div style={{width: "1920px", height: "100vh", background: "#202124"}}>
                 <Grid container sx={{width: "100%"}}>
                     {/*--- App Bar ---*/}
                     <Grid xs={12}>
