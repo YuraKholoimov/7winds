@@ -5,20 +5,18 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 
-const MyListItemText = styled(ListItemText)({
-    color: "red"
-})
 
 const SideBar = ({handleClick, open}: SideBarPropsType) => {
     return (
-        <Box sx={{width: '100%', maxWidth: 360,  bgcolor: 'background.paper'}}>
+        <Box sx={{width: '100%', height: "100vh", maxWidth: 360, bgcolor: '#27272A', border: "1px solid grey"}}>
             <nav aria-label="main  folders">
-                <List sx={{
-                    backgroundColor: "#27272A",
-                    // backgroundColor: "#8a8a90",
-                    height: "100%"
-                }}>
-                    <ListItem disablePadding>
+                <List>
+                    <ListItem disablePadding
+                              sx={{
+                                  borderBottom: "1px solid grey",
+                                  // paddingLeft: "30px",
+                                  height: "36px",
+                              }}>
                         <ListItemButton onClick={handleClick}>
                             <Typography variant="inherit" component="h5" sx={{mr: 2, color: "white"}}>
                                 Название проекта
