@@ -49,7 +49,11 @@ function App() {
                         <Paper variant="outlined" square sx={{background: "#27272A"}}>
                             <Grid container sx={{height: "44px", border: "1px solid grey"}}>
                                 <Grid p={0} xs={4}
-                                      sx={{color: "white", borderRight: "1px solid grey", paddingTop: "10px"}}
+                                      sx={{color: "white",
+                                          borderRight: "1px solid grey",
+                                          paddingTop: "10px",
+                                          textAlign: "center"
+                                      }}
                                 >
                                     Строительно-монтажные работы
                                 </Grid>

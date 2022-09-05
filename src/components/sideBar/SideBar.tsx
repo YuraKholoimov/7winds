@@ -7,10 +7,11 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 
 const SideBar = ({handleClick, open}: SideBarPropsType) => {
     return (
-        <Box sx={{width: '100%', maxWidth: 360}}>
+        <Box sx={{width: '100%', maxWidth: 360,}}>
             <nav aria-label="main  folders">
                 <List sx={{
-                    backgroundColor: "gray",
+                    // backgroundColor: "#27272A",
+                    backgroundColor: "#8a8a90",
                     height: "100%"
                 }}>
                     <ListItem disablePadding>
@@ -32,12 +33,14 @@ const SideBar = ({handleClick, open}: SideBarPropsType) => {
                         </List>
                     </Collapse>
 
-                    <ListItem disablePadding>
+                    <ListItem disablePadding sx={{
+                        color: "white"
+                    }}>
                         <ListItemButton>
                             <ListItemIcon>
                                 <DashboardIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Inbox"/>
+                            <ListItemText primary="По проекту" />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -45,7 +48,47 @@ const SideBar = ({handleClick, open}: SideBarPropsType) => {
                             <ListItemIcon>
                                 <DashboardIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Drafts"/>
+                            <ListItemText primary="Обьекты"/>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <DashboardIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary="РД"/>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <DashboardIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary="МТО"/>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <DashboardIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary="СМР"/>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <DashboardIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary="График"/>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <DashboardIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary="МиМ"/>
                         </ListItemButton>
                     </ListItem>
                 </List>

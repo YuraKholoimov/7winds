@@ -47,14 +47,17 @@ export const EditableLevel: React.FC<EditableLevelPropsType> = (
             {/*----- EditableRow -----*/}
             {editMode
                 ? <TextFieldForm
-                    setTextFieldVisible={setIsVisible}
+                    setIsVisible={setIsVisible}
                     LevelLabel={type == "level" ? folder_2 : file}
                     changeEditMode={changeEditMode}
+                    id={id}
                     title={title}
                     parent={parent}
                     type={type}
                     editMode={editMode}
-
+                    setEditMode={setEditMode}
+                    value={value}
+                    price={price}
                 />
                 : <TableRow key={id} sx={{'&:last-child td, &:last-child th': {border: 0}}}
                             onDoubleClick={changeEditMode}>
@@ -98,7 +101,7 @@ export const EditableLevel: React.FC<EditableLevelPropsType> = (
                 && <TextFieldForm
                     type={textFieldType.type}
                     parent={id}
-                    setTextFieldVisible={setIsVisible}
+                    setIsVisible={setIsVisible}
                     addLevelHandler={addLevelHandler}
                     addRowHandler={addRowHandler}
                     LevelLabel={<>

@@ -4,7 +4,15 @@ import s from "../basicTable/textfield.module.scss";
 import {styled, TextField} from "@mui/material";
 import TableCell from "@mui/material/TableCell";
 import {AppRootStateType, useAppDispatch} from "../../bll/store";
-import {addNewLevel, addNewRow, NewRowData, RowData, updateRow} from "../../bll/newRowDataSlice";
+import {
+    addNewLevel,
+    addNewRow,
+    addNullLevel,
+    NewRowData,
+    RowData,
+    updateLevel,
+    updateRow
+} from "../../bll/newRowDataSlice";
 import {useSelector} from "react-redux";
 
 const MyTableCell = styled(TableCell)({
@@ -26,6 +34,7 @@ function saveRow(rowData: NewRowData, storage: RowData[]) {
     console.log(res)
     return res
 }
+
 // функция для изменения строки
 function editRow(row: RowData, storage: RowData[]) {
     const index = storage.findIndex((v) => v.id === row.id)
@@ -36,6 +45,7 @@ function editRow(row: RowData, storage: RowData[]) {
         changed: recalculation(row.parent, storage)
     }
 }
+
 function recalculation(parentID: number | null, storage: RowData[]) {
     const changedRows: RowData[] = []
 
@@ -60,62 +70,90 @@ function recalculation(parentID: number | null, storage: RowData[]) {
 
 
 export const TextFieldForm = (props: TextFieldFormPropsType) => {
+
     const [valueTextField, setValueTextField] = useState<TextFieldsType[]>([
-        {id: 1, name: "title", value: props.row?.title || '', placeholder: "Наименование работ", type: "string"},
-        {id: 2, name: "unit", value: props.row?.unit || '', placeholder: "Ед. изм", type: "string"},
-        {id: 3, name: "quantity", value: props.row?.quantity || 0, placeholder: "Количество", type: "number"},
-        {id: 4, name: "unitPrice", value: props.row?.unitPrice || 0, placeholder: "Цена за еденицу", type: "number"}
+        {id: 1, name: "title", value: props.title || '', placeholder: "Наименование работ", type: "string"},
+        {id: 2, name: "unit", value: props.unit || '', placeholder: "Ед. изм", type: "string"},
+        {id: 3, name: "quantity", value: props.quantity || 0, placeholder: "Количество", type: "number"},
+        {id: 4, name: "unitPrice", value: props.unitPrice || 0, placeholder: "Цена за еденицу", type: "number"}
     ])
+
     const dispatch = useAppDispatch();
-    const storage = useSelector((state: AppRootStateType) => state.rootLevel.value)
+    const storage = useSelector((state: AppRootStateType) => state.rootLevel.level)
 
     const setValue = (id: number, value: string | number) => {
-        setValueTextField(valueTextField.map((field) => field.id === id ? {...field, value: value} : field))
+        setValueTextField(valueTextField
+            .map((field) => field.id === id
+                ? {...field, value: value}
+                : field)
+        )
     }
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'Enter') {
-            if (props.type == "level") {
+            if (props.type == "level" && props.parent) {
+                console.log("add level")
                 if (props.editMode) {
-                    console.log("edit")
+                    const levelData = {
+                        id: props.id,
+                        parent: props.parent,
+                        type: props.type,
+                        title: String(valueTextField[0].value),
+                        price: props.price,
+                        value: props.value
+                    }
+                    dispatch(updateLevel({levelData}))
+                    props.setEditMode && props.setEditMode(false)
 
+                } else {
+                    dispatch(addNewLevel({
+                        title: String(valueTextField[0].value),
+                        parent: props.parent,
+                        type: props.type
+                    }))
+                    props.setIsVisible && props.setIsVisible({isOpen: false})
                 }
 
-                console.log("addLevel")
-                dispatch(addNewLevel({title: String(valueTextField[0].value), parent: props.parent, type: props.type}))
-                props.setTextFieldVisible && props.setTextFieldVisible({isOpen: false, type: "level"})
-            } else {
-                // const index = storage.findIndex((v) => v.id == props.parent);
-                console.log("row")
-                    if (props.editMode && props.row) {
-                        console.log("edit row")
-                        const rowData = {
-                            id: props.row.id,
-                            title: props.row.title,
-                            parent: props.row.parent,
-                            type: props.row.type,
-                            unit: props.row.unit,
-                            unitPrice: props.row.unitPrice,
-                            quantity: props.row.quantity,
-                            price: Number(props.row.unitPrice) * Number(props.row.quantity)
-                        }
-                        dispatch(updateRow({row: rowData}))
+            } else if (props.type == "row") {
+                if (props.editMode && props.row && props.id) {
+
+                    const rowData = {
+                        id: props.id,
+                        title: String(valueTextField[0].value),
+                        parent: props.parent,
+                        type: props.type,
+                        unit: String(valueTextField[1].value),
+                        unitPrice: Number(valueTextField[3].value),
+                        quantity: Number(valueTextField[2].value),
+                        price: Number(valueTextField[3].value) * Number(valueTextField[2].value)
+                    }
+                    dispatch(updateRow({row: rowData}))
+                    props.setEditMode && props.setEditMode(false)
+
+                } else {
+                    const rowData = {
+                        title: String(valueTextField[0].value),
+                        parent: props.parent,
+                        type: props.type,
+                        unit: String(valueTextField[1].value),
+                        unitPrice: Number(valueTextField[3].value),
+                        quantity: Number(valueTextField[2].value),
+                        price: Number(valueTextField[3].value) * Number(valueTextField[2].value)
                     }
 
-                const rowData = {
-                    title: String(valueTextField[0].value),
-                    parent: props.parent,
-                    type: props.type,
-                    unit: String(valueTextField[1].value),
-                    unitPrice: Number(valueTextField[3].value),
-                    quantity: Number(valueTextField[2].value),
-                    price: Number(valueTextField[3].value) * Number(valueTextField[2].value)
+                    dispatch(addNewRow({rowData: rowData}))
                 }
+            } else if (props.parent === null) {
+                console.log("null level")
 
-                dispatch(addNewRow({rowData: rowData}))
+                dispatch(addNullLevel({
+                    nullLevel: {
+                        title: String(valueTextField[0].value)
+                    }}))
             }
+        } else if (e.key === "Escape")  {
+            props.changeEditMode && props.changeEditMode()
         }
-
     }
 
     return (
@@ -153,6 +191,8 @@ export const TextFieldForm = (props: TextFieldFormPropsType) => {
 
 type TextFieldFormPropsType = {
     row?: RowData
+    value?: any
+
     id?: number
     title?: string
     unit?: string
@@ -164,12 +204,12 @@ type TextFieldFormPropsType = {
 
     changeEditMode?: () => void
     LevelLabel?: React.ReactNode
-    // setTextFieldVisible: ({isOpen: boolean, type: "level" | "row"}) => void
-    setTextFieldVisible?: any
+    setIsVisible?: any
     addLevelHandler?: () => void
     addRowHandler?: () => void
 
     editMode?: boolean
+    setEditMode?: (value: boolean) => void
 }
 
 export type TextFieldsType = {

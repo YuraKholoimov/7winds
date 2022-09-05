@@ -22,8 +22,8 @@ export const file = <svg width="24" height="24" viewBox="0 0 24 24" fill="none" 
 
 
 export default function BasicTable() {
-    const rootLevel = useSelector((state: AppRootStateType) => state.rootLevel)
-
+    const rootLevel = useSelector((state: AppRootStateType) => state.rootLevel.level)
+    console.log(rootLevel)
 
     return (
         <>
