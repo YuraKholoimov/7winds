@@ -1,0 +1,13 @@
+@import "_variables";
+@import "_libs/normolize";
+@import '@fontsource/roboto/400.css';
+
+.App {
+    //text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  height: 100vh;
+  background-color: #ffffff;
+}
+
