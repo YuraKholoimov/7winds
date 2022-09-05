@@ -1,24 +1,28 @@
 import React from 'react';
 import Box from "@mui/material/Box";
-import {Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography} from "@mui/material";
+import {Collapse, List, ListItem, ListItemButton, ListItemIcon, ListItemText, styled, Typography} from "@mui/material";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 
+const MyListItemText = styled(ListItemText)({
+    color: "red"
+})
+
 const SideBar = ({handleClick, open}: SideBarPropsType) => {
     return (
-        <Box sx={{width: '100%', maxWidth: 360,}}>
+        <Box sx={{width: '100%', maxWidth: 360,  bgcolor: 'background.paper'}}>
             <nav aria-label="main  folders">
                 <List sx={{
-                    // backgroundColor: "#27272A",
-                    backgroundColor: "#8a8a90",
+                    backgroundColor: "#27272A",
+                    // backgroundColor: "#8a8a90",
                     height: "100%"
                 }}>
                     <ListItem disablePadding>
                         <ListItemButton onClick={handleClick}>
-                            <Typography variant="inherit" component="h5" sx={{mr: 2}}>
+                            <Typography variant="inherit" component="h5" sx={{mr: 2, color: "white"}}>
                                 Название проекта
-                                <Typography variant="inherit" component="h5">
+                                <Typography variant="inherit" component="h5" sx={{mr: 2, color: "white"}}>
                                     Абривиатура
                                 </Typography>
                             </Typography>
@@ -33,14 +37,14 @@ const SideBar = ({handleClick, open}: SideBarPropsType) => {
                         </List>
                     </Collapse>
 
-                    <ListItem disablePadding sx={{
-                        color: "white"
-                    }}>
+                    <ListItem disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
                                 <DashboardIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="По проекту" />
+                            <Typography sx={{color: "white"}}>
+                                По проекту
+                            </Typography>
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -48,7 +52,9 @@ const SideBar = ({handleClick, open}: SideBarPropsType) => {
                             <ListItemIcon>
                                 <DashboardIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Обьекты"/>
+                            <Typography sx={{color: "white"}}>
+                                Обьекты
+                            </Typography>
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -56,7 +62,9 @@ const SideBar = ({handleClick, open}: SideBarPropsType) => {
                             <ListItemIcon>
                                 <DashboardIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="РД"/>
+                            <Typography sx={{color: "white"}}>
+                                РД
+                            </Typography>
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -64,7 +72,9 @@ const SideBar = ({handleClick, open}: SideBarPropsType) => {
                             <ListItemIcon>
                                 <DashboardIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="МТО"/>
+                            <Typography sx={{color: "white"}}>
+                                МТО
+                            </Typography>
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -72,7 +82,9 @@ const SideBar = ({handleClick, open}: SideBarPropsType) => {
                             <ListItemIcon>
                                 <DashboardIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="СМР"/>
+                            <Typography sx={{color: "white"}}>
+                                СМР
+                            </Typography>
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -80,7 +92,9 @@ const SideBar = ({handleClick, open}: SideBarPropsType) => {
                             <ListItemIcon>
                                 <DashboardIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="График"/>
+                            <Typography sx={{color: "white"}}>
+                                График
+                            </Typography>
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -88,10 +102,21 @@ const SideBar = ({handleClick, open}: SideBarPropsType) => {
                             <ListItemIcon>
                                 <DashboardIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="МиМ"/>
+                            <Typography sx={{color: "white"}}>
+                                МиМ
+                            </Typography>
                         </ListItemButton>
                     </ListItem>
+                    <ListItemButton>
+                        <ListItemIcon>
+                            <DashboardIcon/>
+                        </ListItemIcon>
+                        <Typography sx={{color: "white"}}>
+                            Обьекты
+                        </Typography>
+                    </ListItemButton>
                 </List>
+
             </nav>
         </Box>
     );

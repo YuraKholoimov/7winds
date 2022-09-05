@@ -13,10 +13,7 @@ import SideBar from "./components/sideBar/SideBar";
 import TableBody from "@mui/material/TableBody";
 
 const MyTableCellHead = styled(TableCell)({
-    margin: "0",
-    // padding: "0",
     color: "#A1A1AA",
-    // borderRight: "1px solid grey"
 })
 
 function App() {
