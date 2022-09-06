@@ -99,7 +99,7 @@ export const TextFieldForm = (props: TextFieldFormPropsType) => {
                         parent: props.parent,
                         type: props.type,
                         title: String(valueTextField[0].value),
-                        price: props.price,
+                        price: Number(valueTextField[3].value) * Number(valueTextField[2].value),
                         value: props.value
                     }
                     dispatch(updateLevel({levelData}))
