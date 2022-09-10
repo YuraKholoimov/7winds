@@ -10,3 +10,5 @@ The table with tree structure.
 - Redux Toolkit
 - MUI
 - SCSS
+
+<a href="https://yurakholoimov.github.io/7winds/">Click to see</a>
