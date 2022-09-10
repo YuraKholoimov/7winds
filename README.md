@@ -11,4 +11,4 @@ The table with tree structure.
 - MUI
 - SCSS
 
-<a href="https://yurakholoimov.github.io/7winds/">Click to see</a>
+<a href="https://yurakholoimov.github.io/7winds/"><img src="https://e7.pngegg.com/pngimages/526/174/png-clipart-computer-mouse-pointer-magic-mouse-scroll-wheel-scrolling-click-on-it-electronics-hand.png"></a>
