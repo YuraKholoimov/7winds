@@ -9,3 +9,4 @@ The table with tree structure.
 - React
 - Redux Toolkit
 - MUI
+- SCSS
