@@ -1,9 +1,11 @@
-# Getting Started with Create React App
+# Testing task for 7Wings 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+The table with tree structure. 
 
-In the project directory, you can run:
+### Stack
 
-### `yarn start`
+- React
+- Redux Toolkit
+- MUI
